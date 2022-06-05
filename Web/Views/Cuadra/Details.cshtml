@@ -1,0 +1,46 @@
+﻿@model Infraestructure.Models.CUADRACICLO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding:5%">
+    <h2>Detalle</h2>
+    <h4>Cuadraciclo</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <h3><strong class="d-inline-block mb-2 text-primary"> @Html.DisplayFor(model => model.MARCA.DESCRIPCION) </strong></h3>
+                    <div class="mb-1 text-muted">
+                        <b>@Html.DisplayNameFor(model => model.EXTRA):</b>
+                        <ul>
+                            @foreach (var e in Model.EXTRA)
+                            {
+                                <li>@e.DESCRIPCION</li>
+                            }
+                        </ul>
+                    </div>
+
+                    <p class="card-text mb-auto">
+                        <b>@Html.DisplayNameFor(model => model.TARIFA):</b> &cent; @Html.DisplayFor(model => model.TARIFA)<br />
+                        <b>@Html.DisplayNameFor(model => model.INVENTARIO):</b> @Html.DisplayFor(model => model.INVENTARIO)<br />
+                    </p>
+
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    @*<img class="img-fluid rounded" src="~/Img/Tours.jpg" />*@
+                    <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.FOTO)" role="img" alt="CUADRACICLO @Html.DisplayNameFor(model => model.ID_CUADRACICLO)" class="img-fluid rounded">
+
+                </div>
+            </div>
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.ID_CUADRACICLO }) |
+                @Html.ActionLink("Regresar", "IndexAdmin")
+            </p>
+        </div>
+    </div>
+</div>
+    

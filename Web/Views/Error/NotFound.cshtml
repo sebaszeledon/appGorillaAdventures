@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Página no encontrada";
+}
+<div style="padding-top:5%">
+    <div class="jumbotron">
+        <h1 class="display-3">404 - Página no encontrada</h1>
+        <p class="lead">Lo sentimos! Se ha producido un error, no se ha encontrado la página solicitada.</p>
+        <hr class="my-4">
+        <p class="lead">
+            @Html.ActionLink("Regresar", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+    </div>
+</div>
+
+

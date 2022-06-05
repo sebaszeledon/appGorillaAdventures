@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "UnAuthorized";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+<div style="padding-top:5%">
+    <h2>No autorizado</h2>
+
+    <hr>
+
+    <input type="button" value="Regresar" class="btn btn-warning" onclick="goBack()" />
+
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+

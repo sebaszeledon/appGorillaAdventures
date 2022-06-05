@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<div style="padding-top:5%">
+    <div class="jumbotron">
+        <h1 class="display-3" style="color:red">
+            @ViewBag.Title
+        </h1>
+        <p>
+            @ViewBag.Description
+        </p>
+        <hr />
+        <p class="lead">
+            @Html.ActionLink("Regresar", (String)ViewBag.redirectAction, (String)ViewBag.redirect, null, new { @class = "btn btn-primary btn-lg", @style = "margin-right:10px;" })
+        </p>
+    </div>
+</div>
+

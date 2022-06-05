@@ -1,0 +1,102 @@
+﻿@model List<Web.ViewModel.ViewModelReservaDetalle>
+
+<div class="table-responsive-sm">
+    @*Accion, nombre de controlador*@
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Cuadraciclo
+            </th>
+            <th class="center">
+                Cantidad
+            </th>
+            <th class="right">
+                Horas
+            </th>
+            <th class="right">
+                Tarifa
+            </th>
+
+            <th class="right">
+                SubTotal
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.CUADRACICLO.ID_CUADRACICLO)
+                    @Html.DisplayFor(modelItem => item.CUADRACICLO.MARCA.DESCRIPCION)
+                </td>
+                <td class="center" style="width:6.5em">
+                    @Html.EditorFor(modelItem => item.Cantidad, new { htmlAttributes = new { @class = "form-control changeCantidad", data_cuadraid = item.CUADRACICLO.ID_CUADRACICLO, onchange = "updateCantidad(this)" } })
+                </td>
+                <td class="center" style="width:6.5em">
+                    @Html.EditorFor(modelItem => item.CantidadHoras, new { htmlAttributes = new { @class = "form-control changeCantidadHoras", data_cuadraid = item.CUADRACICLO.ID_CUADRACICLO, onchange = "updateCantidadHoras(this)" } })
+                </td>
+                <td class="right">
+                    @Html.DisplayFor(modelItem => item.Tarifa)
+                </td>
+                <td class="right">
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+                <td>
+                    @Ajax.ActionLink("Eliminar",//Texto para el usuario
+                        "eliminarCuadra",//Acción a llamar
+                        "Reserva",
+                        new
+                        {
+                            idCuadra = item.IdCuadra
+                        },//Parámetros a enviar
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "resultadoDetalle",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "GET",
+                            OnComplete = "updateCantCuadras()"
+                        }, new { @class = "btn btn-primary" }
+                        )
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div class="row">
+        <div class="col-lg-5 col-sm-5"></div>
+        <div class="col-lg-7 col-sm-5 ml-auto">
+            <table class="table table-clear">
+                <tbody>
+                    <tr>
+                        <td class="left">
+                            <strong>SubTotal</strong>
+                        </td>
+                        <td class="right">
+                            <strong>@(((decimal)Web.ViewModel.Carrito.Instancia.GetSubTotal()).ToString("C2"))</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <strong>Impuestos</strong>
+                        </td>
+                        <td class="right">
+                            <strong>@(((decimal)Web.ViewModel.Carrito.Instancia.GetImpuesto()).ToString("C2"))</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <strong>Total</strong>
+                        </td>
+                        <td class="right">
+                            <strong>@(((decimal)Web.ViewModel.Carrito.Instancia.GetTotal()).ToString("C2"))</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

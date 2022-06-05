@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Gorilla Adventures</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+    @Html.Partial("_MenuAdmin")
+
+    <main>
+        <div class="container" style="padding-top:1%">
+            @RenderBody()
+        </div>
+    </main>
+
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/sweetalert")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @if (ViewBag.NotificationMessage != null)
+    {
+        <script>
+            @Html.Raw(@ViewBag.NotificationMessage);
+        </script>
+    }
+
+</body>
+</html>

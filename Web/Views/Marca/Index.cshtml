@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Infraestructure.Models.MARCA>
+
+@{
+    ViewBag.Title = "Marcas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding:5%">
+    <h1>Marcas</h1>
+
+    <p>
+        @Html.ActionLink("Nueva", "Create")
+    </p>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_MARCA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_MARCA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id=item.ID_MARCA})
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

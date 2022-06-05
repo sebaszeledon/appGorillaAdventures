@@ -1,0 +1,85 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    @Html.ActionLink("Gorilla Adventures", "Index", "Home", null, new { @class = "navbar-brand" })
+    <!--<a class="navbar-brand" href="#">Gorilla Adventures</a>-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    @* Información usuario *@
+    @{
+        string nombre = "";
+        string email = "Iniciar sesión | Registrarse";
+        int id = 1;
+        Infraestructure.Models.USUARIO oUsuario;
+        //Validar si existe en la sesión
+        if (Session["User"] != null)
+        {
+            oUsuario = (Infraestructure.Models.USUARIO)Session["User"];
+            if (oUsuario != null)
+            {
+                nombre = $"{oUsuario.NOMBRE} {oUsuario.PRIMER_APELLIDO}";
+                email = oUsuario.CORREO;
+                id = oUsuario.ID_USUARIO;
+            }
+        }
+    }
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Cuadras", "Index", "Cuadra", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Tours", "Index", "Servicio", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item" id="cantidadCuadras">
+                @Html.Partial("_OrdenCantidad")
+            </li>
+            <li class="nav-item">
+                @Ajax.ActionLink("Mis Reservas",//Texto para el usuario
+                                       "MisReservas",//Acción a llamar
+                                       "Reserva",
+                                       new
+                                       {
+                                           id = @id
+                                       },//Parámetros a enviar
+                                       new AjaxOptions
+                                       {
+                                           UpdateTargetId = "misReservas",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET",
+                                       }, new { @class = "nav-link" }
+                                       )
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Acerca de", "Contact", "Home", null, new { @class = "nav-link" })
+                <!--<a class="nav-link" href="#">Acerca de</a>-->
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@email</a>
+                <div class="dropdown-menu">
+                    @if (Session["User"] != null)
+                    {
+                        <div class="dropdown-item">
+                            @* Nombre Usuario *@
+                            Usuario: @nombre
+                        </div>
+                    }
+
+
+                    @if (Session["User"] == null)
+                    {
+                        @Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "dropdown-item" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Registrarse", "Index", "Registro", null, new { @class = "dropdown-item" })
+                    }
+                    else
+                    {
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Cerrar sesión", "Logout", "Login", null, new { @class = "dropdown-item " })
+                    }
+
+                </div>
+</nav>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+}

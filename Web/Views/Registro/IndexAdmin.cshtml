@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Infraestructure.Models.USUARIO>
+
+@{
+    ViewBag.Title = "Mantenimiento Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding:5%">
+    <h1>@ViewBag.titulo</h1>
+
+    <br />
+    <table class="table table-hover" style="text-align:center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_USUARIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TIPO_USUARIO1.DESCRIPCION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRIMER_APELLIDO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SEGUNDO_APELLIDO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TELEFONO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CORREO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ESTADO)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_USUARIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIPO_USUARIO1.DESCRIPCION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRIMER_APELLIDO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SEGUNDO_APELLIDO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TELEFONO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CORREO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ESTADO)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID_USUARIO })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

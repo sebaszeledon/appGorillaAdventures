@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Infraestructure.Models.RESERVA>
+
+@{
+    ViewBag.Title = "Mis Reservas";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div style="padding:5%" id="misReservas">
+    <h2>Mis reservaciones</h2>
+
+    <table class="table table-hover" style="text-align:center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_RESERVA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.USUARIO.NOMBRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FECHA_PAGO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FECHA_RESERVA)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_RESERVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USUARIO.NOMBRE)
+                </td>
+                @{
+                    var fechaPago = item.FECHA_PAGO?.ToString("yyyy-MM-dd");
+                }
+                <td>
+                    @Html.DisplayFor(model => fechaPago)
+                </td>
+                @{
+                    var fechaReserva = item.FECHA_RESERVA?.ToString("yyyy-MM-dd");
+                }
+                <td>
+                    @Html.DisplayFor(model => fechaReserva)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "DetailsClient", new { id = item.ID_RESERVA })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Infraestructure.Models.CUADRACICLO>
+
+@{
+    ViewBag.Title = "Lista de Cuadras";
+}
+
+<div style="padding:5%">
+    <div class="row">
+        <h1>@ViewBag.titulo</h1>
+        <div class="col-lg-3">
+            @* Listado de marcas *@
+        </div>
+        <div class="row" style="padding-top:2%">
+            @* Listado de cuadraciclos *@
+            <div id="resultado" class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            @*<img class="img-fluid rounded" src="~/Img/Cuadras.jpg" />*@
+                            <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.FOTO)"
+                                 alt="Imagen @Html.DisplayFor(modelItem => item.ID_CUADRACICLO)" class="img-fluid rounded" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.MARCA.DESCRIPCION)</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"> @Html.DisplayNameFor(model => model.TARIFA): ¢@Html.DisplayFor(modelItem => item.TARIFA)</h6>
+                                <p class="card-text">   @Html.DisplayNameFor(model => model.INVENTARIO):  @Html.DisplayFor(modelItem => item.INVENTARIO)</p>
+                                <div class="card-body">
+                                    @Ajax.ActionLink("Reservar",//Texto para el usuario
+                                       "ordenarCuadra",//Acción a llamar
+                                       "Reserva",
+                                       new
+                                       {
+                                           idCuadra = item.ID_CUADRACICLO
+                                       },//Parámetros a enviar
+                                       new AjaxOptions
+                                       {
+                                           UpdateTargetId = "cantidadCuadras",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET",
+                                       }, new { @class = "btn btn-primary" }
+                                       )
+                                    @*<input type="button" value="Reservar" class="btn btn-primary" />*@
+                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryajax")
+        }

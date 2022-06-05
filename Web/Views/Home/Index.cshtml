@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="jumbotron" style="background-color:white">
+    <h1>Bienvenido(a)</h1>
+    <br />
+    <img class="img-fluid" src="~/Img/Logo2.png" />
+    <br /><br />
+    <p class="lead">Disfrutá de la adrenalina y la emoción de atravesar las mejores playas y montañas con nuestros cuadras!</p>
+    
+    <p>@Html.ActionLink("Reservar", "Index", "Cuadra", null, new { @class = "btn btn-primary btn-lg" })</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <h3 class="card-header">Cuadraciclos</h3>
+            <div class="card-body">
+                <h5 class="card-title">Ofrecemos distintas marcas</h5>
+                <h6 class="card-subtitle text-muted">Acorde a su preferencia</h6>
+            </div>
+            <div class="card-body">
+                <img class="img-fluid rounded" src="~/Img/Cuadras.jpg" />
+            </div>
+            <div class="card-body">
+                <p class="card-text">Un cuadraciclo es el mejor aliado para visitar los lugares más escondidos en las hermosas playas.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Honda</li>
+                <li class="list-group-item">KTM</li>
+                <li class="list-group-item">Kawasaki</li>
+            </ul>
+            <div class="card-body">
+                @Html.ActionLink("Ver lista completa", "Index", "Cuadra", null, new { @class = "card-link" })
+                <!--<a href="#" class="card-link">Card link</a>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <h3 class="card-header">Tours</h3>
+                <div class="card-body">
+                    <h5 class="card-title">Te llevamos a visitar las mejores zonas</h5>
+                    <h6 class="card-subtitle text-muted">Formamos parte de tu aventura</h6>
+                </div>
+                <div class="card-body">
+                    <img class="img-fluid rounded" src="~/Img/Tours.jpg" />
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Conocemos los mejores rincones de cada playa, será un placer guiarte a cada una de ellas.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Bahía de los piratas</li>
+                    <li class="list-group-item">Playa Avellanas</li>
+                    <li class="list-group-item">Playa Danta y Dantita</li>
+                </ul>
+                <div class="card-body">
+                    @Html.ActionLink("Ver todos", "Index", "Servicio", null, new { @class = "card-link" })
+                    <!--<a href="#" class="card-link">Card link</a>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <h3 class="card-header">Regístrate</h3>
+                <div class="card-body">
+                    <h5 class="card-title">Forma parte de nuestra comunidad</h5>
+                    <h6 class="card-subtitle text-muted">Muchas aventuras te esperan</h6>
+                </div>
+                <div class="card-body" style="padding-top:7%">
+                    <img class="img-fluid rounded" src="~/Img/Registarse.jpg" />
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Al registrarte podrás realizar con tiempo tus reservaciones y dejar todo planeado para las próximas vacaciones.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Reservación en línea</li>
+                    <li class="list-group-item">Estado de tus reservaciones</li>
+                    <li class="list-group-item">Cupones de descuento</li>
+                </ul>
+                <div class="card-body">
+                    @Html.ActionLink("Registrarse", "Index", "Registro", null, new { @class = "card-link" })
+                    <!--<a href="#" class="card-link">Card link</a>-->
+                </div>
+            </div>
+        </div>
+    </div>

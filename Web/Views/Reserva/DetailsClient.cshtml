@@ -1,0 +1,154 @@
+﻿@model Infraestructure.Models.RESERVA
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+<div style="padding:5%">
+    <h2>Reservación</h2>
+    <hr />
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_PAGO)
+            </dt>
+            @{
+                var fechaPago = Model.FECHA_PAGO?.ToString("yyyy-MM-dd");
+            }
+            <dd>
+                @Html.DisplayFor(model => fechaPago)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_RESERVA)
+            </dt>
+            @{
+                var fechaReserva = Model.FECHA_RESERVA?.ToString("yyyy-MM-dd");
+            }
+            <dd>
+                @Html.DisplayFor(model => fechaReserva)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.USUARIO)
+            </dt>
+
+            <dd>
+                @{
+                    var nombreCompleto = Model.USUARIO.NOMBRE + " " + Model.USUARIO.PRIMER_APELLIDO + " " + Model.USUARIO.SEGUNDO_APELLIDO;
+                }
+                @Html.DisplayFor(model => nombreCompleto)
+            </dd>
+        </dl>
+    </div>
+    <br />
+    <h3>Detalle Orden</h3><br />
+    <h5>Cuadraciclos</h5>
+    <table class="table table-hover" style="text-align:center">
+        <tr>
+            <th>
+                Cuadraciclo
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Horas
+            </th>
+            <th>
+                Tarifa
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model.DETALLE_CUADRACICLO)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CUADRACICLO.MARCA.DESCRIPCION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CANTIDAD_CUADRACICLO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CANTIDAD_HORAS)
+                </td>
+                @{
+                    var subTotal = item.SUBTOTAL * item.CANTIDAD_HORAS * item.CANTIDAD_CUADRACICLO;
+                }
+                <td>
+                    &cent;@Html.DisplayFor(model => subTotal)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <h5>Tours</h5>
+    <table class="table table-hover" style="text-align:center">
+        <tr>
+            <th>
+                Tour
+            </th>
+            <th>
+                Personas
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Subtotal
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model.DETALLE_SERVICIO)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SERVICIO.DESCRIPCION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CANTIDAD_SERVICIO)
+                </td>
+                <td>
+                    &cent;@Html.DisplayFor(modelItem => item.SUBTOTAL)
+                </td>
+                @{
+                    var subTotalTour = item.SUBTOTAL * item.CANTIDAD_SERVICIO;
+                }
+                <td>
+                    &cent;@Html.DisplayFor(model => subTotalTour)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <hr />
+    <div style="text-align:right; padding-right:8%">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SUBTOTAL)
+            </dt>
+
+            <dd>
+                &cent;@Html.DisplayFor(model => model.SUBTOTAL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IMPUESTO)
+            </dt>
+
+            <dd>
+                &cent;@Html.DisplayFor(model => model.IMPUESTO)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.TOTAL)
+            </dt>
+
+            <dd>
+                &cent;@Html.DisplayFor(model => model.TOTAL)
+            </dd>
+        </dl>
+    </div>
+</div>

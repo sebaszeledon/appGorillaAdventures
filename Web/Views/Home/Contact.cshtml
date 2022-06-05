@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Acerca de";
+}
+
+<div>
+    <div class="row" style="padding:0.5%">
+        <div class="col-md-4">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+    <hr />
+    <div class="row" style="padding:0.5%">
+        <div class="col-md-4">
+            <img class="img-fluid rounded" src="~/Img/Logo1.png" />
+        </div>
+        <div class="col-md-6" style="padding-top:5%; padding-left:3%">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">Descripción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#profile">Contáctenos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#developer">Desarrollador</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <hr />
+                <div class="tab-pane fade active show" id="home">
+                    <p>Gorilla Adventures es una empresa que se dedica a la renta de cuadraciclos por hora a todas aquellas personas que deseen conocer las playas y montañas cercanas a la zona de Huacas en Guanacaste Costa Rica. También se ofrecen tours guiados a destinos hermosos de los alrededores.</p>
+                </div>
+                <div class="tab-pane fade" id="profile">
+                    <p>Correo: gorilla_adventures@gmail.com</p>
+                    <p>Dirección: Centro Comercial Plaza Huacas, Cruce de Huacas, Santa Cruz, Guanacaste</p>
+                    <p>Teléfono: (506)8972-8470</p>
+                </div>
+                <div class="tab-pane fade" id="developer">
+                    <p>Sebastián Zeledón Chacón</p>
+                    <p>Estudiante de Ingeniería del Software</p>
+                    <p>Universidad Técnica Nacional</p>
+                    <p>Costa Rica - 2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

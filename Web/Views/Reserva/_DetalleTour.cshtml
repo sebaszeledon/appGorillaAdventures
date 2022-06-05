@@ -1,0 +1,57 @@
+﻿@model List<Web.ViewModel.ViewModelTourDetalle>
+
+<div class="table-responsive-sm">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Tour
+            </th>
+            <th class="center">
+                Personas
+            </th>
+            <th class="right">
+                Precio
+            </th>
+            <th class="right">
+                SubTotal
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.SERVICIO.ID_SERVICIO)
+                    @Html.DisplayFor(modelItem => item.SERVICIO.DESCRIPCION)
+                </td>
+                <td class="center" style="width:6.5em">
+                    @Html.EditorFor(modelItem => item.Cantidad, new { htmlAttributes = new { @class = "form-control changeCantidad", data_tourid = item.SERVICIO.ID_SERVICIO, onchange = "updateCantidadTours(this)" } })
+                </td>
+                <td class="right">
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td class="right">
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+                <td>
+                    @Ajax.ActionLink("Eliminar",//Texto para el usuario
+                        "eliminarTour",//Acción a llamar
+                        "Reserva",
+                        new
+                        {
+                            idTour = item.IdTour
+                        },//Parámetros a enviar
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "resultadoDetalleTour",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "GET",
+                            OnComplete = "updateCantidadTours()"
+                        }, new { @class = "btn btn-primary" }
+                        )
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
